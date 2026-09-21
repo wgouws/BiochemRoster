@@ -1,0 +1,211 @@
+import type { Station } from "./types";
+
+export const STATIONS: Station[] = [
+  {
+    id: "early",
+    label: "Early start",
+    sublabel: "08:00 – 16:30  ·  usually a scientist (or Jacquie)",
+    section: "day",
+    exclusive: false,
+    min: 1,
+    max: 1,
+  },
+  {
+    id: "pro1",
+    label: "PRO 1",
+    sublabel: "Roche cobas Pro 1",
+    section: "day",
+    exclusive: true,
+    requiresScientist: true,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "pro2",
+    label: "PRO 2",
+    sublabel: "PVT buffers – am  ·  nLo – pm",
+    section: "day",
+    exclusive: true,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "pro3",
+    label: "PRO 3",
+    sublabel: "Outstanding list",
+    section: "day",
+    exclusive: true,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "val",
+    label: "VALIDATION QC",
+    sublabel: "+ Start PRO 1",
+    section: "day",
+    exclusive: false,
+    min: 1,
+    max: 3,
+  },
+  {
+    id: "pvt_err",
+    label: "PVT – PM",
+    sublabel: "Error buffers / O/S lists",
+    section: "day",
+    exclusive: true,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "c513",
+    label: "c513",
+    sublabel: "Roche cobas c513",
+    section: "day",
+    exclusive: true,
+    min: 1,
+    max: 3,
+  },
+  {
+    id: "alinity",
+    label: "Alinity",
+    sublabel: "Abbott Alinity",
+    section: "day",
+    exclusive: true,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "pvt_am",
+    label: "PVT all day / am",
+    section: "day",
+    exclusive: true,
+    min: 1,
+    max: 3,
+  },
+  {
+    id: "pvt_pm",
+    label: "PVT – PM",
+    section: "day",
+    exclusive: true,
+    min: 0,
+    max: 2,
+  },
+  {
+    id: "epp",
+    label: "EPP",
+    sublabel: "Tuesday = Animals",
+    section: "day",
+    exclusive: true,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "epp1",
+    label: "EPP 1st read",
+    section: "day",
+    exclusive: false,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "epp2",
+    label: "EPP 2nd read",
+    section: "day",
+    exclusive: false,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "send",
+    label: "Sendaways",
+    section: "day",
+    exclusive: true,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "immuno_sci",
+    label: "Immunology scientist",
+    section: "day",
+    exclusive: true,
+    requiresScientist: true,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "immuno_am",
+    label: "Immuno am",
+    section: "day",
+    exclusive: true,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "admin",
+    label: "Admin / Projects",
+    section: "day",
+    exclusive: false,
+    min: 0,
+    max: 4,
+  },
+  {
+    id: "cobas_n1",
+    label: "COBAS N1",
+    sublabel: "Evening scientist  14:00 – 22:00",
+    section: "evening",
+    exclusive: false,
+    requiresScientist: true,
+    min: 1,
+    max: 2,
+  },
+  {
+    id: "cobas_n2",
+    label: "COBAS N2",
+    sublabel: "Evening cover",
+    section: "evening",
+    exclusive: false,
+    min: 1,
+    max: 1,
+  },
+  {
+    id: "send_eve",
+    label: "Sendaways 9.30",
+    section: "evening",
+    exclusive: false,
+    min: 1,
+    max: 1,
+  },
+  {
+    id: "pvt9",
+    label: "PVT 9pm",
+    section: "evening",
+    exclusive: false,
+    min: 1,
+    max: 1,
+  },
+  {
+    id: "pvt7",
+    label: "PVT 7pm",
+    sublabel: "Retired mid-June 2026",
+    section: "evening",
+    exclusive: false,
+    min: 0,
+    max: 1,
+    retired: true,
+  },
+];
+
+export const DAY_STATIONS = STATIONS.filter((s) => s.section === "day");
+export const EVENING_STATIONS = STATIONS.filter((s) => s.section === "evening" && !s.retired);
+
+export function stationById(id: string): Station | undefined {
+  return STATIONS.find((s) => s.id === id);
+}
+
+export function emptyCells(): Record<string, import("./types").Assignment[][]> {
+  const cells: Record<string, import("./types").Assignment[][]> = {};
+  for (const s of STATIONS) {
+    cells[s.id] = [[], [], [], [], []];
+  }
+  return cells;
+}

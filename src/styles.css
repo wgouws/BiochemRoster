@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --font-display: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-background: #f3efe6;
+  --color-foreground: #1c2421;
+  --color-card: #fbf8f2;
+  --color-card-foreground: #1c2421;
+  --color-popover: #fbf8f2;
+  --color-popover-foreground: #1c2421;
+  --color-primary: #1f5c57;
+  --color-primary-foreground: #f7f4ee;
+  --color-secondary: #e7efe9;
+  --color-secondary-foreground: #1c2421;
+  --color-muted: #ece7dc;
+  --color-muted-foreground: #5c6560;
+  --color-accent: #d7e3de;
+  --color-accent-foreground: #1c2421;
+  --color-destructive: #8f3d32;
+  --color-border: #d4cfc4;
+  --color-input: #d4cfc4;
+  --color-ring: #1f5c57;
+  --color-section: #e7efe9;
+  --color-row: #f7f3ea;
+  --color-eve: #eef3f1;
+  --color-holiday: #ede8dc;
+  --color-leave: #f4e6d8;
+  --color-leave-fg: #6b3f1f;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius: 8px;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  header,
+  aside,
+  .print\:hidden {
+    display: none !important;
+  }
+  main {
+    display: block !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  table {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
